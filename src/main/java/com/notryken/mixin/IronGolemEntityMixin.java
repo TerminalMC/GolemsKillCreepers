@@ -7,10 +7,10 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.notryken.GolemsKillCreepers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.passive.GolemEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,9 +34,9 @@ public class IronGolemEntityMixin extends GolemEntity {
     )
     private static boolean thisIsNotTheCreeperYouAreLookingFor1(
             boolean original,
-            @Local(argsOnly = true) LivingEntity entity
+            @Local(argsOnly = true) ServerWorld world
     ) {
-        if (GolemsKillCreepers.doAttack(entity.getWorld())) {
+        if (GolemsKillCreepers.doAttack(world)) {
             return false;
         }
         return original;
@@ -53,7 +53,7 @@ public class IronGolemEntityMixin extends GolemEntity {
             at = @At("MIXINEXTRAS:EXPRESSION")
     )
     private boolean thisIsNotTheCreeperYouAreLookingFor2(boolean original) {
-        if (GolemsKillCreepers.doAttack(getWorld())) {
+        if (getWorld() instanceof ServerWorld world && GolemsKillCreepers.doAttack(world)) {
             return false;
         }
         return original;
@@ -70,7 +70,7 @@ public class IronGolemEntityMixin extends GolemEntity {
             at = @At("MIXINEXTRAS:EXPRESSION")
     )
     private boolean thisIsNotTheCreeperYouAreLookingFor3(boolean original) {
-        if (GolemsKillCreepers.doAttack(getWorld())) {
+        if (getWorld() instanceof ServerWorld world && GolemsKillCreepers.doAttack(world)) {
             return false;
         }
         return original;
@@ -83,8 +83,8 @@ public class IronGolemEntityMixin extends GolemEntity {
                     target = "Lnet/minecraft/entity/passive/IronGolemEntity;getAttackDamage()F"
             )
     )
-    private float yeetTheCreeper(float original, Entity target) {
-        if (target instanceof CreeperEntity && GolemsKillCreepers.doInstakill(getWorld())) {
+    private float yeetTheCreeper(float original, ServerWorld world, Entity target) {
+        if (target instanceof CreeperEntity && GolemsKillCreepers.doInstakill(world)) {
             return Float.MAX_VALUE;
         }
         return original;

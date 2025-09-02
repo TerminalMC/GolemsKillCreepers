@@ -3,9 +3,9 @@ package com.notryken;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.GameRules.Category;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,11 +32,11 @@ public class GolemsKillCreepers implements ModInitializer {
     public void onInitialize() {
     }
 
-    public static boolean doAttack(World world) {
+    public static boolean doAttack(ServerWorld world) {
         return world.getGameRules().getBoolean(DO_IRON_GOLEMS_ATTACK_CREEPERS);
     }
 
-    public static boolean doInstakill(World world) {
+    public static boolean doInstakill(ServerWorld world) {
         return world.getGameRules().getBoolean(DO_IRON_GOLEMS_INSTAKILL_CREEPERS);
     }
 }
