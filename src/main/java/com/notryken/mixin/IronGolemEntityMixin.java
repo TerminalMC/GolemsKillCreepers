@@ -53,7 +53,7 @@ public class IronGolemEntityMixin extends GolemEntity {
             at = @At("MIXINEXTRAS:EXPRESSION")
     )
     private boolean thisIsNotTheCreeperYouAreLookingFor2(boolean original) {
-        if (getWorld() instanceof ServerWorld world && GolemsKillCreepers.doAttack(world)) {
+        if (getEntityWorld() instanceof ServerWorld world && GolemsKillCreepers.doAttack(world)) {
             return false;
         }
         return original;
@@ -70,7 +70,7 @@ public class IronGolemEntityMixin extends GolemEntity {
             at = @At("MIXINEXTRAS:EXPRESSION")
     )
     private boolean thisIsNotTheCreeperYouAreLookingFor3(boolean original) {
-        if (getWorld() instanceof ServerWorld world && GolemsKillCreepers.doAttack(world)) {
+        if (getEntityWorld() instanceof ServerWorld world && GolemsKillCreepers.doAttack(world)) {
             return false;
         }
         return original;
