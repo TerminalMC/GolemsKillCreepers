@@ -18,7 +18,8 @@ package dev.terminalmc.golemskillcreepers;
 
 import dev.terminalmc.golemskillcreepers.util.ModLogger;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.gamerules.GameRule;
+import org.jetbrains.annotations.NotNull;
 
 public class GolemsKillCreepers {
 
@@ -26,8 +27,8 @@ public class GolemsKillCreepers {
     public static final String MOD_NAME = "GolemsKillCreepers";
     public static final ModLogger LOG = new ModLogger(MOD_NAME);
 
-    public static GameRules.Key<GameRules.BooleanValue> DO_IRON_GOLEMS_ATTACK_CREEPERS;
-    public static GameRules.Key<GameRules.BooleanValue> DO_IRON_GOLEMS_INSTAKILL_CREEPERS;
+    public static GameRule<@NotNull Boolean> DO_IRON_GOLEMS_ATTACK_CREEPERS;
+    public static GameRule<@NotNull Boolean> DO_IRON_GOLEMS_INSTAKILL_CREEPERS;
 
     /**
      * Client initialization.
@@ -36,10 +37,10 @@ public class GolemsKillCreepers {
     }
 
     public static boolean doAttack(ServerLevel world) {
-        return world.getGameRules().getBoolean(DO_IRON_GOLEMS_ATTACK_CREEPERS);
+        return world.getGameRules().get(DO_IRON_GOLEMS_ATTACK_CREEPERS);
     }
 
     public static boolean doInstakill(ServerLevel world) {
-        return world.getGameRules().getBoolean(DO_IRON_GOLEMS_INSTAKILL_CREEPERS);
+        return world.getGameRules().get(DO_IRON_GOLEMS_INSTAKILL_CREEPERS);
     }
 }
