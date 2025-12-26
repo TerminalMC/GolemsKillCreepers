@@ -1,4 +1,4 @@
 {
-  "gamerule.golemskillcreepers.iron_golems_attack_creepers": "Iron Golems attack Creepers",
-  "gamerule.golemskillcreepers.iron_golems_instakill_creepers": "Iron Golems insta-kill Creepers"
+  "gamerule.doIronGolemsAttackCreepers": "Iron Golems attack Creepers",
+  "gamerule.doIronGolemsInstakillCreepers": "Iron Golems insta-kill Creepers"
 }

@@ -16,14 +16,12 @@
 
 package dev.terminalmc.golemskillcreepers;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.level.gamerules.GameRuleCategory;
-import net.minecraft.world.level.gamerules.GameRules;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.GameRules.Category;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.registries.RegisterEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod(value = GolemsKillCreepers.MOD_ID)
 @EventBusSubscriber(modid = GolemsKillCreepers.MOD_ID)
@@ -35,25 +33,17 @@ public class GolemsKillCreepersNeoForge {
     }
 
     @SubscribeEvent
-    static void registerSetup(RegisterEvent event) {
-        if (event.getRegistry().equals(BuiltInRegistries.GAME_RULE)) {
-            // Register game rules
-            GolemsKillCreepers.DO_IRON_GOLEMS_ATTACK_CREEPERS = GameRules.registerBoolean(
-                    Identifier.fromNamespaceAndPath(
-                            GolemsKillCreepers.MOD_ID,
-                            "iron_golems_attack_creepers"
-                    ).toString(),
-                    GameRuleCategory.MOBS,
-                    true
-            );
-            GolemsKillCreepers.DO_IRON_GOLEMS_INSTAKILL_CREEPERS = GameRules.registerBoolean(
-                    Identifier.fromNamespaceAndPath(
-                            GolemsKillCreepers.MOD_ID,
-                            "iron_golems_instakill_creepers"
-                    ).toString(),
-                    GameRuleCategory.MOBS,
-                    true
-            );
-        }
+    static void commonSetup(FMLCommonSetupEvent event) {
+        // Register game rules
+        GolemsKillCreepers.DO_IRON_GOLEMS_ATTACK_CREEPERS = GameRules.register(
+                "doIronGolemsAttackCreepers",
+                Category.MOBS,
+                GameRules.BooleanValue.create(true)
+        );
+        GolemsKillCreepers.DO_IRON_GOLEMS_INSTAKILL_CREEPERS = GameRules.register(
+                "doIronGolemsInstakillCreepers",
+                Category.MOBS,
+                GameRules.BooleanValue.create(true)
+        );
     }
 }

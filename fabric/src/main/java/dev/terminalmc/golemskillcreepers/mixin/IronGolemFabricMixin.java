@@ -23,18 +23,17 @@ import com.llamalad7.mixinextras.sugar.Local;
 import dev.terminalmc.golemskillcreepers.GolemsKillCreepers;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.golem.AbstractGolem;
-import net.minecraft.world.entity.animal.golem.IronGolem;
+import net.minecraft.world.entity.animal.AbstractGolem;
+import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(IronGolem.class)
 public class IronGolemFabricMixin extends AbstractGolem {
 
-    protected IronGolemFabricMixin(EntityType<? extends @NotNull AbstractGolem> entityType, Level world) {
+    protected IronGolemFabricMixin(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
     }
 
