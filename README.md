@@ -23,6 +23,17 @@ A tiny mod that adds two gamerules to allow Iron Golems to attack and instakill 
 
 ### Gamerules
 
+Since 1.21.11
+
+- `golemskillcreepers:iron_golems_attack_creepers`
+  - Controls whether Iron Golems actively target Creepers
+  - Default: `true`
+- `golemskillcreepers:iron_golems_instakill_creepers`
+  - Controls whether Iron Golems deal maximum damage to Creepers when attacking
+  - Default: `true`
+
+Before 1.21.11
+
 - `doIronGolemsAttackCreepers`
   - Controls whether Iron Golems actively target Creepers
   - Default: `true`
