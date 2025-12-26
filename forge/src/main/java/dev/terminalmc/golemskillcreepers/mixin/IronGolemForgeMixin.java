@@ -31,9 +31,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(IronGolem.class)
-public class IronGolemNeoForgeMixin extends AbstractGolem {
+public class IronGolemForgeMixin extends AbstractGolem {
 
-    protected IronGolemNeoForgeMixin(EntityType<? extends AbstractGolem> entityType, Level world) {
+    protected IronGolemForgeMixin(EntityType<? extends AbstractGolem> entityType, Level world) {
         super(entityType, world);
     }
 

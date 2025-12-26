@@ -18,22 +18,14 @@ package dev.terminalmc.golemskillcreepers;
 
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.GameRules.Category;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @Mod(value = GolemsKillCreepers.MOD_ID)
 @EventBusSubscriber(modid = GolemsKillCreepers.MOD_ID)
-public class GolemsKillCreepersNeoForge {
+public class GolemsKillCreepersForge {
 
-    public GolemsKillCreepersNeoForge() {
-        // Initialize mod
-        GolemsKillCreepers.init();
-    }
-
-    @SubscribeEvent
-    static void commonSetup(FMLCommonSetupEvent event) {
+    public GolemsKillCreepersForge() {
         // Register game rules
         GolemsKillCreepers.DO_IRON_GOLEMS_ATTACK_CREEPERS = GameRules.register(
                 "doIronGolemsAttackCreepers",
@@ -45,5 +37,7 @@ public class GolemsKillCreepersNeoForge {
                 Category.MOBS,
                 GameRules.BooleanValue.create(true)
         );
+        // Initialize mod
+        GolemsKillCreepers.init();
     }
 }

@@ -8,7 +8,7 @@
     "minVersion": "${mixinextras_version}"
   },
   "mixins": [
-    "IronGolemNeoForgeMixin"
+    "IronGolemForgeMixin"
   ],
   "client": [
   ],
