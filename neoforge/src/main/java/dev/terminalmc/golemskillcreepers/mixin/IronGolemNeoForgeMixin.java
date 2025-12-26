@@ -21,8 +21,8 @@ import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.terminalmc.golemskillcreepers.GolemsKillCreepers;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Creeper;
@@ -49,9 +49,9 @@ public class IronGolemNeoForgeMixin extends AbstractGolem {
     )
     private static boolean thisIsNotTheCreeperYouAreLookingFor1(
             boolean original,
-            @Local(argsOnly = true) ServerLevel world
+            @Local(argsOnly = true) LivingEntity entity
     ) {
-        if (GolemsKillCreepers.doAttack(world)) {
+        if (GolemsKillCreepers.doAttack(entity.level())) {
             return false;
         }
         return original;

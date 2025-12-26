@@ -78,8 +78,8 @@ public class IronGolemMixin extends AbstractGolem {
                     target = "Lnet/minecraft/world/entity/animal/IronGolem;getAttackDamage()F"
             )
     )
-    private float yeetTheCreeper(float original, ServerLevel world, Entity target) {
-        if (target instanceof Creeper && GolemsKillCreepers.doInstakill(world)) {
+    private float yeetTheCreeper(float original, Entity target) {
+        if (target instanceof Creeper && GolemsKillCreepers.doInstakill(level())) {
             return Float.MAX_VALUE;
         }
         return original;

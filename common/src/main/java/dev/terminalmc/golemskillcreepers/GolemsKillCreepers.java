@@ -17,8 +17,8 @@
 package dev.terminalmc.golemskillcreepers;
 
 import dev.terminalmc.golemskillcreepers.util.ModLogger;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 
 public class GolemsKillCreepers {
 
@@ -35,11 +35,11 @@ public class GolemsKillCreepers {
     public static void init() {
     }
 
-    public static boolean doAttack(ServerLevel world) {
+    public static boolean doAttack(Level world) {
         return world.getGameRules().getBoolean(DO_IRON_GOLEMS_ATTACK_CREEPERS);
     }
 
-    public static boolean doInstakill(ServerLevel world) {
+    public static boolean doInstakill(Level world) {
         return world.getGameRules().getBoolean(DO_IRON_GOLEMS_INSTAKILL_CREEPERS);
     }
 }
