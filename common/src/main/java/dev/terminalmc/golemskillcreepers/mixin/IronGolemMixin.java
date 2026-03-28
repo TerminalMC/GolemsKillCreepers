@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 TerminalMC
+ * Copyright 2026 TerminalMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package dev.terminalmc.golemskillcreepers.mixin;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.terminalmc.golemskillcreepers.GolemsKillCreepers;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -32,10 +33,30 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(IronGolem.class)
-public class IronGolemMixin extends AbstractGolem {
+public abstract class IronGolemMixin extends AbstractGolem {
 
     protected IronGolemMixin(EntityType<? extends @NotNull AbstractGolem> entityType, Level world) {
         super(entityType, world);
+    }
+
+    @Definition(
+            id = "Creeper",
+            type = Creeper.class
+
+    )
+    @Expression("? instanceof Creeper")
+    @ModifyExpressionValue(
+            method = "lambda$registerGoals$0",
+            at = @At("MIXINEXTRAS:EXPRESSION")
+    )
+    private static boolean thisIsNotTheCreeperYouAreLookingFor1(
+            boolean original,
+            @Local(argsOnly = true) ServerLevel world
+    ) {
+        if (GolemsKillCreepers.doAttack(world)) {
+            return false;
+        }
+        return original;
     }
 
     @Definition(
@@ -55,15 +76,13 @@ public class IronGolemMixin extends AbstractGolem {
         return original;
     }
 
-    @Definition(
-            id = "CREEPER",
-            field = "Lnet/minecraft/world/entity/EntityType;CREEPER:Lnet/minecraft/world/entity/EntityType;"
-
-    )
-    @Expression("? == CREEPER")
     @ModifyExpressionValue(
-            method = "canAttackType",
-            at = @At("MIXINEXTRAS:EXPRESSION")
+            method = "canAttack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/LivingEntity;is(Ljava/lang/Object;)Z",
+                    ordinal = 1
+            )
     )
     private boolean thisIsNotTheCreeperYouAreLookingFor3(boolean original) {
         if (level() instanceof ServerLevel world && GolemsKillCreepers.doAttack(world)) {

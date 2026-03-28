@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 TerminalMC
+ * Copyright 2026 TerminalMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ public class GolemsKillCreepersFabric implements ModInitializer {
                         )
                 );
 
-        // Initialize client
+        // Initialize mod
         GolemsKillCreepers.init();
     }
 }

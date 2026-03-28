@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 TerminalMC
+ * Copyright 2026 TerminalMC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,6 @@ public class GolemsKillCreepers {
     public static GameRule<@NotNull Boolean> DO_IRON_GOLEMS_ATTACK_CREEPERS;
     public static GameRule<@NotNull Boolean> DO_IRON_GOLEMS_INSTAKILL_CREEPERS;
 
-    /**
-     * Client initialization.
-     */
     public static void init() {
     }
 
